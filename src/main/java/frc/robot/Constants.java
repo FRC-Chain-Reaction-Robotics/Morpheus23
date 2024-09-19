@@ -14,6 +14,37 @@ package frc.robot;
  */
 public final class Constants
 {
-    public static final int LIFT_MOTOR_ID = 4;
-	public static final int GUN_SOLENOID_ID = 0;
+    
+    // All motor controller IDs
+    
+
+    public final class Drive {
+        // IDs
+        public static final int BACK_LEFT_DRIVE_MOTOR_ID = -1;
+        public static final int BACK_RIGHT_DRIVE_MOTOR_ID = -1;
+        public static final int FRONT_LEFT_DRIVE_MOTOR_ID = -1;
+        public static final int FRONT_RIGHT_DRIVE_MOTOR_ID = -1; //TODO: ADD DRIVETRAIN IDS
+        // Power Limits
+        //TODO: ADD POWER LIMITS & IMPLEMENT THEM
+    }
+
+    public final class Lift {
+        // IDs
+        public static final int LIFT_MOTOR_ID = -1; //TODO: ADD WINCH MOTOR ID
+        // Power Limits
+        public static final double LIFT_MAX_PERCENT_POWER = 0.4;
+    }
+    
+
+    public final class Pneumatics {
+        // IDs
+	    public static final int GUN_SOLENOID_ID = -1; //TODO: ADD SOLENOID ID
+        public static final int PCM_ID = -1; //TODO: ADD PCM ID
+        public static final int COMPRESSOR2_CONTROLLER_ID = -1; //TODO: ADD ID FOR 2nd COMPRESSOR
+        // Power Limits
+        public static final double MAX_SOLENOID_PERCENT = 0.1;
+        public static final double MAX_SOLENOID_VOLTAGE = 12.0;
+        public static final double MAX_COMPRESSOR_PERCENT = -1; //TODO: Determine proper percentage
+        public static final double MAX_COMPRESSOR_VOLTAGE = -1; //TODO: Determine proper voltage
+    }
 }
