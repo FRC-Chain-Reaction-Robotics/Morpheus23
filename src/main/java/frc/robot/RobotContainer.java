@@ -44,11 +44,11 @@ public class RobotContainer {
 		// new POVButton(controller, 0).whileTrue(new RunCommand(() -> atlas.set(0.5), atlas))
 		// 	.or(new POVButton(controller, 180).whileTrue(new RunCommand(() -> atlas.set(-0.5), atlas)))
 		// 	.whileFalse(new InstantCommand(() -> atlas.set(0.0), atlas));
-		atlas.setDefaultCommand(new RunCommand(() -> {
+		new RunCommand(() -> {
 			controller.povUp().onTrue(new InstantCommand(() -> atlas.set(1))); // Powers lift to go up if pov is up
 			controller.povDown().onTrue(new InstantCommand(() -> atlas.set(-1))) // Powers lift to go down if pov is down
 			.and(controller.povUp()).onFalse(new InstantCommand(() -> atlas.set(0))); // Sets power to 0 if neither up or down is active
-		}, atlas));
+		}, atlas);
 
 		controller.a()
 			.onTrue(new InstantCommand(() -> gun.set(true), gun))
