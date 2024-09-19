@@ -20,10 +20,10 @@ public final class Constants
 
     public final class Drive {
         // IDs
-        public static final int BACK_LEFT_DRIVE_MOTOR_ID = -1;
-        public static final int BACK_RIGHT_DRIVE_MOTOR_ID = -1;
-        public static final int FRONT_LEFT_DRIVE_MOTOR_ID = -1;
-        public static final int FRONT_RIGHT_DRIVE_MOTOR_ID = -1; //TODO: ADD DRIVETRAIN IDS
+        public static final int BACK_LEFT_ID = -1;
+        public static final int BACK_RIGHT_ID = -1;
+        public static final int FRONT_LEFT_ID = -1;
+        public static final int FRONT_RIGHT_ID = -1; //TODO: ADD DRIVETRAIN IDS
         // Power Limits
         //TODO: ADD POWER LIMITS & IMPLEMENT THEM
     }

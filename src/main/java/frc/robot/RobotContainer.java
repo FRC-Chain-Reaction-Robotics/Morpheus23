@@ -22,6 +22,7 @@ public class RobotContainer {
 	// The robot's subsystems and commands are defined here...
 	Lift atlas = new Lift();
 	Gun gun = new Gun();
+	TankDrive drive = new TankDrive();
 
 	CommandXboxController controller = new CommandXboxController(0);
 
@@ -44,6 +45,10 @@ public class RobotContainer {
 		// new POVButton(controller, 0).whileTrue(new RunCommand(() -> atlas.set(0.5), atlas))
 		// 	.or(new POVButton(controller, 180).whileTrue(new RunCommand(() -> atlas.set(-0.5), atlas)))
 		// 	.whileFalse(new InstantCommand(() -> atlas.set(0.0), atlas));
+		drive.setDefaultCommand(new RunCommand(() -> {
+			drive.drive(controller.getLeftY(), controller.getRightY());
+		}, drive));
+
 		new RunCommand(() -> {
 			controller.povUp().onTrue(new InstantCommand(() -> atlas.set(1))); // Powers lift to go up if pov is up
 			controller.povDown().onTrue(new InstantCommand(() -> atlas.set(-1))) // Powers lift to go down if pov is down
