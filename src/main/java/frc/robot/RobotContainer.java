@@ -23,7 +23,7 @@ public class RobotContainer {
 	Lift atlas = new Lift();
 	Gun gun = new Gun();
 
-	XboxController controller = new XboxController(0);
+	CommandXboxController controller = new CommandXboxController(0);
 
 	/**
 	 * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -34,20 +34,25 @@ public class RobotContainer {
 
 	}
 
-	/**
-	 * Use this method to define your button->command mappings. Buttons can be
-	 * created by instantiating a {@link GenericHID} or one of its subclasses
-	 * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
-	 * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-	 */
+	// /**
+	//  * Use this method to define your button->command mappings. Buttons can be
+	//  * created by instantiating a {@link GenericHID} or one of its subclasses
+	//  * ({@link edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then
+	//  * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+	//  */
 	private void configureButtonBindings() {
-		new POVButton(controller, 0).whileTrue(new RunCommand(() -> atlas.set(0.5), atlas))
-			.or(new POVButton(controller, 180).whileTrue(new RunCommand(() -> atlas.set(-0.5), atlas)))
-			.whileFalse(new InstantCommand(() -> atlas.set(0.0), atlas));
+		// new POVButton(controller, 0).whileTrue(new RunCommand(() -> atlas.set(0.5), atlas))
+		// 	.or(new POVButton(controller, 180).whileTrue(new RunCommand(() -> atlas.set(-0.5), atlas)))
+		// 	.whileFalse(new InstantCommand(() -> atlas.set(0.0), atlas));
+		atlas.setDefaultCommand(new RunCommand(() -> {
+			controller.povUp().onTrue(new InstantCommand(() -> atlas.set(1))); // Powers lift to go up if pov is up
+			controller.povDown().onTrue(new InstantCommand(() -> atlas.set(-1))) // Powers lift to go down if pov is down
+			.and(controller.povUp()).onFalse(new InstantCommand(() -> atlas.set(0))); // Sets power to 0 if neither up or down is active
+		}, atlas));
 
-		new JoystickButton(controller, XboxController.Button.kA.value)
-			.onTrue(new RunCommand(() -> gun.set(true)))
-			.onFalse(new RunCommand(() -> gun.set(false)));
+		controller.a()
+			.onTrue(new InstantCommand(() -> gun.set(true), gun))
+			.onFalse(new InstantCommand(() -> gun.set(false), gun));
 	}
 
 	/**
