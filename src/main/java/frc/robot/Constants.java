@@ -20,17 +20,16 @@ public final class Constants
 
     public final class Drive {
         // IDs
-        public static final int BACK_LEFT_ID = -1;
-        public static final int BACK_RIGHT_ID = -1;
-        public static final int FRONT_LEFT_ID = -1;
-        public static final int FRONT_RIGHT_ID = -1; //TODO: ADD DRIVETRAIN IDS
+        public static final int BACK_LEFT_ID = 6;
+        public static final int BACK_RIGHT_ID = 8;
+        public static final int FRONT_LEFT_ID = 5;
+        public static final int FRONT_RIGHT_ID = 7;
         // Power Limits
-        //TODO: ADD POWER LIMITS & IMPLEMENT THEM
     }
 
     public final class Lift {
         // IDs
-        public static final int LIFT_MOTOR_ID = -1; //TODO: ADD WINCH MOTOR ID
+        public static final int LIFT_MOTOR_ID = 1;
         // Power Limits
         public static final double LIFT_MAX_PERCENT_POWER = 0.4;
     }
@@ -38,13 +37,13 @@ public final class Constants
 
     public final class Pneumatics {
         // IDs
-	    public static final int GUN_SOLENOID_ID = -1; //TODO: ADD SOLENOID ID
-        public static final int PCM_ID = -1; //TODO: ADD PCM ID
-        public static final int COMPRESSOR2_CONTROLLER_ID = -1; //TODO: ADD ID FOR 2nd COMPRESSOR
+	    public static final int GUN_SOLENOID_ID = 4;
+        public static final int PCM_ID = 0;
+        public static final int COMPRESSOR2_CONTROLLER_ID = 3;
         // Power Limits
         public static final double MAX_SOLENOID_PERCENT = 0.1;
         public static final double MAX_SOLENOID_VOLTAGE = 12.0;
-        public static final double MAX_COMPRESSOR_PERCENT = -1; //TODO: Determine proper percentage
-        public static final double MAX_COMPRESSOR_VOLTAGE = -1; //TODO: Determine proper voltage
+        public static final double MAX_COMPRESSOR_PERCENT = 0.2; //TODO: Determine proper percentage
+        public static final double MAX_COMPRESSOR_VOLTAGE = 12;
     }
 }
