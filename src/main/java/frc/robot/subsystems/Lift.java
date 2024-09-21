@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 
 import frc.robot.Constants;
 
@@ -9,11 +9,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Lift extends SubsystemBase
 {
-    VictorSPX liftMotor = new VictorSPX(Constants.Lift.LIFT_MOTOR_ID);
+    TalonSRX liftMotor = new TalonSRX(Constants.Lift.LIFT_MOTOR_ID);
 
     public Lift()
     {
         liftMotor.setInverted(true);
+        liftMotor.configOpenloopRamp(Constants.Lift.SECONDS_TO_RAMP);
     }
     
     /**
@@ -27,6 +28,6 @@ public class Lift extends SubsystemBase
             power = Constants.Lift.LIFT_MAX_PERCENT_POWER;
         else 
             power *= Constants.Lift.LIFT_MAX_PERCENT_POWER;
-        liftMotor.set(VictorSPXControlMode.PercentOutput, power);
+        liftMotor.set(TalonSRXControlMode.PercentOutput, power);
     }
 }

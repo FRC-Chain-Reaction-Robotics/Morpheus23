@@ -25,6 +25,8 @@ public final class Constants
         public static final int FRONT_LEFT_ID = 5;
         public static final int FRONT_RIGHT_ID = 7;
         // Power Limits
+        public static final double POWER_MODIFIER = 0.60;
+        public static final double SECONDS_TO_RAMP = 2;
     }
 
     public final class Lift {
@@ -32,6 +34,7 @@ public final class Constants
         public static final int LIFT_MOTOR_ID = 1;
         // Power Limits
         public static final double LIFT_MAX_PERCENT_POWER = 0.4;
+        public static final double SECONDS_TO_RAMP = 2;
     }
     
 
@@ -41,9 +44,7 @@ public final class Constants
         public static final int PCM_ID = 0;
         public static final int COMPRESSOR2_CONTROLLER_ID = 3;
         // Power Limits
-        public static final double MAX_SOLENOID_PERCENT = 0.1;
-        public static final double MAX_SOLENOID_VOLTAGE = 12.0;
-        public static final double MAX_COMPRESSOR_PERCENT = 0.2; //TODO: Determine proper percentage
-        public static final double MAX_COMPRESSOR_VOLTAGE = 12;
+        public static final double MAX_SOLENOID_PERCENT = 0.8;
+        public static final double MAX_COMPRESSOR_CURRENT = 16;
     }
 }

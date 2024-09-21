@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
+
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj2.command.button.*;
@@ -45,15 +47,21 @@ public class RobotContainer {
 		// new POVButton(controller, 0).whileTrue(new RunCommand(() -> atlas.set(0.5), atlas))
 		// 	.or(new POVButton(controller, 180).whileTrue(new RunCommand(() -> atlas.set(-0.5), atlas)))
 		// 	.whileFalse(new InstantCommand(() -> atlas.set(0.0), atlas));
+
+		// Cache Trigger Objects here so that factory methods are not called every loop (avoids loop overrun)
+		Trigger povUpTrigger = controller.povUp();
+		Trigger povDownTrigger = controller.povDown();
+		Trigger povCenterTrigger = controller.povCenter();
+
+		gun.setDefaultCommand(new RunCommand(() -> gun.compressor(), gun));
+
 		drive.setDefaultCommand(new RunCommand(() -> {
 			drive.drive(controller.getLeftY(), controller.getRightY());
 		}, drive));
 
-		new RunCommand(() -> {
-			controller.povUp().onTrue(new InstantCommand(() -> atlas.set(1))); // Powers lift to go up if pov is up
-			controller.povDown().onTrue(new InstantCommand(() -> atlas.set(-1))) // Powers lift to go down if pov is down
-			.and(controller.povUp()).onFalse(new InstantCommand(() -> atlas.set(0))); // Sets power to 0 if neither up or down is active
-		}, atlas);
+		povUpTrigger.onTrue(new InstantCommand(() -> atlas.set(1))); // Powers lift to go up if pov is up
+		povDownTrigger.onTrue(new InstantCommand(() -> atlas.set(-1))); // Powers lift to go down if pov is down
+		povCenterTrigger.onTrue(new InstantCommand(() -> atlas.set(0))); // Sets power to 0 if neither up or down is active
 
 		controller.a()
 			.onTrue(new InstantCommand(() -> gun.set(true), gun))
