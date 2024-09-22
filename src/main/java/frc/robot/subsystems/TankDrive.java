@@ -4,12 +4,10 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -23,10 +21,12 @@ public class TankDrive extends SubsystemBase {
   public TankDrive() {
     frontLeft_SPX.setInverted(true);
     backLeft_SPX.setInverted(true);
+
     frontLeft_SPX.configOpenloopRamp(Constants.Drive.SECONDS_TO_RAMP);
     frontRight_SPX.configOpenloopRamp(Constants.Drive.SECONDS_TO_RAMP);
     backLeft_SPX.configOpenloopRamp(Constants.Drive.SECONDS_TO_RAMP);
     backRight_SPX.configOpenloopRamp(Constants.Drive.SECONDS_TO_RAMP);
+    
     drive = new DifferentialDrive(
       (double power) -> {
         frontLeft_SPX.set(TalonSRXControlMode.PercentOutput, power);
