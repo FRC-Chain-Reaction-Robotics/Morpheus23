@@ -34,7 +34,6 @@ public class RobotContainer {
 	public RobotContainer() {
 		// Configure the button bindings
 		configureButtonBindings();
-
 	}
 
 	// /**
@@ -44,10 +43,6 @@ public class RobotContainer {
 	//  * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
 	//  */
 	private void configureButtonBindings() {
-		// new POVButton(controller, 0).whileTrue(new RunCommand(() -> atlas.set(0.5), atlas))
-		// 	.or(new POVButton(controller, 180).whileTrue(new RunCommand(() -> atlas.set(-0.5), atlas)))
-		// 	.whileFalse(new InstantCommand(() -> atlas.set(0.0), atlas));
-
 		// Cache Trigger Objects here so that factory methods are not called every loop (avoids loop overrun)
 		Trigger povUpTrigger = controller.povUp();
 		Trigger povDownTrigger = controller.povDown();
@@ -66,6 +61,9 @@ public class RobotContainer {
 		controller.a()
 			.onTrue(new InstantCommand(() -> gun.set(true), gun))
 			.onFalse(new InstantCommand(() -> gun.set(false), gun));
+
+		controller.b()
+			.onTrue(new InstantCommand(() -> gun.toggleCompressor()));
 	}
 
 	/**

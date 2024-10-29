@@ -34,4 +34,12 @@ public class Gun extends SubsystemBase
     public void compressor() {
         compSpx.set(TalonSRXControlMode.PercentOutput, pcm.getCompressor()?1.0:0.0);
     }
+
+    public void toggleCompressor () {
+        if (pcm.getCompressor()) {
+            pcm.disableCompressor();
+        } else {
+            pcm.enableCompressorDigital();
+        }
+    }
 }
